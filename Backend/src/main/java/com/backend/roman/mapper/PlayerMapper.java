@@ -2,12 +2,10 @@ package com.backend.roman.mapper;
 
 import com.backend.roman.dto.PlayerDto;
 import com.backend.roman.entity.Player;
-import org.springframework.stereotype.Component;
 
-@Component
 public class PlayerMapper {
-
-    public PlayerDto toDto(Player player) {
+    public static PlayerDto toDto(Player player) {
+        if (player == null) return null;
         PlayerDto dto = new PlayerDto();
         dto.setId(player.getId());
         dto.setFirstName(player.getFirstName());
@@ -21,7 +19,8 @@ public class PlayerMapper {
         return dto;
     }
 
-    public Player toEntity(PlayerDto dto) {
+    public static Player toEntity(PlayerDto dto) {
+        if (dto == null) return null;
         Player player = new Player();
         player.setId(dto.getId());
         player.setFirstName(dto.getFirstName());

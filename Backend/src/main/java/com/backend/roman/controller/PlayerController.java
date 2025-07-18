@@ -11,32 +11,26 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
-@RestController
 @AllArgsConstructor
+@RestController
 @RequestMapping("/players")
 public class PlayerController {
 
-//    TODO:
-//     Endpoints:
-//      V Create a new player.
-//      V Update an existing player.
-//      V Delete a player.
-//      V Get a player by ID.
-//      V Get a list of players with filtering and sorting.
-//      ● Add players in bulk from a CSV file.
-
     private final PlayerService playerService;
-    private static final Set<String> ALLOWED_SORTS = Set.of("firstName", "lastName", "dateOfBirth");
     private final CsvService csvService;
 
     @GetMapping
-    public ResponseEntity<List<PlayerDto>> getAllPlayers(@RequestParam(required = false, defaultValue = "firstName") String sort){
-        if (!ALLOWED_SORTS.contains(sort)){
-            sort = "firstName";
-        }
-        return ResponseEntity.ok(playerService.getAll(sort));
+    public ResponseEntity<List<PlayerDto>> getAllPlayers(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) List<String> nationalities,
+            @RequestParam(required = false) Integer minAge,
+            @RequestParam(required = false) Integer maxAge,
+            @RequestParam(required = false) List<String> positions,
+            @RequestParam(required = false) Double minHeight,
+            @RequestParam(required = false) Double maxHeight,
+            @RequestParam(required = false, defaultValue = "firstName") String sort) {
+        return ResponseEntity.ok(playerService.getAll(name, nationalities, minAge, maxAge, positions, minHeight, maxHeight, sort));
     }
 
     @GetMapping("/{id}")
