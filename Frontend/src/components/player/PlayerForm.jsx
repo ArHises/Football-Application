@@ -20,6 +20,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { PLAYER_CONSTANTS } from "../../utils/constants";
+import { formatPositionWithFullName } from "../../utils/flagsAndGroups";
+import { FlagIcon } from "../common";
 import styles from "../../styles/components/PlayerForm.module.css";
 
 const PlayerForm = ({
@@ -236,7 +238,8 @@ const PlayerForm = ({
                                 <Grid size={{ xs: 12, md: 6 }}>
                                     <Typography
                                         variant="h6"
-                                        className={styles.sectionTitle}>
+                                        className={styles.sectionTitle}
+                                    >
                                         Basic Information
                                     </Typography>
 
@@ -306,7 +309,8 @@ const PlayerForm = ({
                                             <Box className={styles.ageDisplay}>
                                                 <Typography
                                                     variant="body2"
-                                                    color="textSecondary">
+                                                    color="textSecondary"
+                                                >
                                                     {formData.dateOfBirth
                                                         ? `Age: ${calculateAge()} years`
                                                         : "Age: -"}
@@ -350,14 +354,16 @@ const PlayerForm = ({
                                 <Grid size={{ xs: 12, md: 6 }}>
                                     <Typography
                                         variant="h6"
-                                        className={styles.sectionTitle}>
+                                        className={styles.sectionTitle}
+                                    >
                                         Professional Information
                                     </Typography>
 
                                     <Grid
                                         container
                                         spacing={3}
-                                        direction="column">
+                                        direction="column"
+                                    >
                                         {/* Selection Fields in Column */}
                                         <Grid size={{ xs: 12 }}>
                                             <FormControl
@@ -365,7 +371,8 @@ const PlayerForm = ({
                                                 error={
                                                     !!validationErrors.nationalities
                                                 }
-                                                required>
+                                                required
+                                            >
                                                 <InputLabel>
                                                     Nationalities
                                                 </InputLabel>
@@ -384,12 +391,21 @@ const PlayerForm = ({
                                                         <Box
                                                             className={
                                                                 styles.chipContainer
-                                                            }>
+                                                            }
+                                                        >
                                                             {selected.map(
                                                                 (value) => (
                                                                     <Chip
                                                                         key={
                                                                             value
+                                                                        }
+                                                                        icon={
+                                                                            <FlagIcon
+                                                                                nationality={
+                                                                                    value
+                                                                                }
+                                                                                size="14px"
+                                                                            />
                                                                         }
                                                                         label={
                                                                             value
@@ -402,7 +418,8 @@ const PlayerForm = ({
                                                                 )
                                                             )}
                                                         </Box>
-                                                    )}>
+                                                    )}
+                                                >
                                                     {availableNationalities.map(
                                                         (nationality) => (
                                                             <MenuItem
@@ -411,8 +428,27 @@ const PlayerForm = ({
                                                                 }
                                                                 value={
                                                                     nationality
-                                                                }>
-                                                                {nationality}
+                                                                }
+                                                            >
+                                                                <span
+                                                                    style={{
+                                                                        display:
+                                                                            "flex",
+                                                                        alignItems:
+                                                                            "center",
+                                                                        gap: "8px",
+                                                                    }}
+                                                                >
+                                                                    <FlagIcon
+                                                                        nationality={
+                                                                            nationality
+                                                                        }
+                                                                        size="16px"
+                                                                    />
+                                                                    {
+                                                                        nationality
+                                                                    }
+                                                                </span>
                                                             </MenuItem>
                                                         )
                                                     )}
@@ -423,7 +459,8 @@ const PlayerForm = ({
                                                         color="error"
                                                         className={
                                                             styles.helperText
-                                                        }>
+                                                        }
+                                                    >
                                                         {
                                                             validationErrors.nationalities
                                                         }
@@ -438,7 +475,8 @@ const PlayerForm = ({
                                                 error={
                                                     !!validationErrors.positions
                                                 }
-                                                required>
+                                                required
+                                            >
                                                 <InputLabel>
                                                     Positions
                                                 </InputLabel>
@@ -455,16 +493,17 @@ const PlayerForm = ({
                                                         <Box
                                                             className={
                                                                 styles.chipContainer
-                                                            }>
+                                                            }
+                                                        >
                                                             {selected.map(
                                                                 (value) => (
                                                                     <Chip
                                                                         key={
                                                                             value
                                                                         }
-                                                                        label={
+                                                                        label={formatPositionWithFullName(
                                                                             value
-                                                                        }
+                                                                        )}
                                                                         size="small"
                                                                         className={
                                                                             styles.chip
@@ -474,15 +513,17 @@ const PlayerForm = ({
                                                                 )
                                                             )}
                                                         </Box>
-                                                    )}>
+                                                    )}
+                                                >
                                                     {availablePositions.map(
                                                         (position) => (
                                                             <MenuItem
                                                                 key={position}
-                                                                value={
+                                                                value={position}
+                                                            >
+                                                                {formatPositionWithFullName(
                                                                     position
-                                                                }>
-                                                                {position}
+                                                                )}
                                                             </MenuItem>
                                                         )
                                                     )}
@@ -493,7 +534,8 @@ const PlayerForm = ({
                                                         color="error"
                                                         className={
                                                             styles.helperText
-                                                        }>
+                                                        }
+                                                    >
                                                         {
                                                             validationErrors.positions
                                                         }
@@ -508,9 +550,8 @@ const PlayerForm = ({
                                                 <Typography
                                                     variant="body2"
                                                     color="textSecondary"
-                                                    className={
-                                                        styles.infoTitle
-                                                    }>
+                                                    className={styles.infoTitle}
+                                                >
                                                     📝 Form Tips:
                                                 </Typography>
                                                 <ul className={styles.tipsList}>
@@ -546,7 +587,8 @@ const PlayerForm = ({
                                             onClick={onCancel}
                                             startIcon={<Cancel />}
                                             className={styles.cancelButton}
-                                            disabled={loading}>
+                                            disabled={loading}
+                                        >
                                             Cancel
                                         </Button>
                                         <Button
@@ -554,7 +596,8 @@ const PlayerForm = ({
                                             variant="contained"
                                             startIcon={<Save />}
                                             className={styles.submitButton}
-                                            disabled={loading}>
+                                            disabled={loading}
+                                        >
                                             {loading
                                                 ? "Saving..."
                                                 : player

@@ -1,3 +1,9 @@
+import {
+    formatNationalityWithFlag,
+    formatPositionWithFullName,
+    getNationalitiesWithFlags,
+} from "./flagsAndGroups";
+
 export const formatters = {
     formatDate: (dateString, format = "dd/MM/yyyy") => {
         if (!dateString) return "";
@@ -27,6 +33,20 @@ export const formatters = {
     formatHeight: (height) => {
         if (height == null) return "";
         return `${height}cm`;
+    },
+
+    formatNationalities: (nationalities) => {
+        if (!nationalities || !Array.isArray(nationalities)) return "";
+        return nationalities
+            .map((nationality) => formatNationalityWithFlag(nationality))
+            .join(", ");
+    },
+
+    formatPositions: (positions) => {
+        if (!positions || !Array.isArray(positions)) return "";
+        return positions
+            .map((position) => formatPositionWithFullName(position))
+            .join(", ");
     },
 
     formatArray: (array, separator = ", ") => {
@@ -81,5 +101,48 @@ export const formatters = {
         const formattedLast = capitalizeFirst(lastName);
 
         return `${formattedFirst} ${formattedLast}`.trim();
+    },
+
+    /**
+     * Format nationalities with flags for display in table
+     * @param {Array} nationalities - Array of nationality strings
+     * @returns {string} Formatted nationalities with flags (emoji version)
+     */
+    formatNationalities: (nationalities) => {
+        if (
+            !nationalities ||
+            !Array.isArray(nationalities) ||
+            nationalities.length === 0
+        ) {
+            return "N/A";
+        }
+
+        return nationalities
+            .map((nationality) => formatNationalityWithFlag(nationality))
+            .join(", ");
+    },
+
+    /**
+     * Get nationalities data for React components
+     * @param {Array} nationalities - Array of nationality strings
+     * @returns {Array} Array of nationality data objects
+     */
+    getNationalitiesData: (nationalities) => {
+        return getNationalitiesWithFlags(nationalities);
+    },
+
+    /**
+     * Format positions with full names for display in table
+     * @param {Array} positions - Array of position strings
+     * @returns {string} Formatted positions with full names
+     */
+    formatPositions: (positions) => {
+        if (!positions || !Array.isArray(positions) || positions.length === 0) {
+            return "N/A";
+        }
+
+        return positions
+            .map((position) => formatPositionWithFullName(position))
+            .join(", ");
     },
 };

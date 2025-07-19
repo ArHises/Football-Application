@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import PlayerActions from "./PlayerActions";
 import { formatters } from "../../utils/formatters";
+import { NationalitiesWithFlags } from "../common";
 import { UI_CONSTANTS } from "../../utils/constants";
 import styles from "../../styles/components/PlayerTable.module.css";
 
@@ -77,7 +78,11 @@ const PlayerTable = ({ players, loading, onEdit, onDelete }) => {
                 const sortedNationalities = params.value?.sort((a, b) =>
                     a.localeCompare(b)
                 );
-                return formatters.formatArray(sortedNationalities);
+                return (
+                    <NationalitiesWithFlags
+                        nationalities={sortedNationalities}
+                    />
+                );
             },
             sortComparator: (v1, v2) => {
                 // Sort by the first nationality alphabetically
@@ -114,7 +119,8 @@ const PlayerTable = ({ players, loading, onEdit, onDelete }) => {
                 const sortedPositions = params.value?.sort((a, b) =>
                     a.localeCompare(b)
                 );
-                return formatters.formatArray(sortedPositions);
+                // Display only short versions (e.g., LWB, RM) without full names
+                return sortedPositions?.join(", ") || "N/A";
             },
             sortComparator: (v1, v2) => {
                 // Sort by the first position alphabetically

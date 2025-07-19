@@ -1,6 +1,22 @@
 # Football Player Management Application
 
-A full-stack application for managing football players with CRUD operations and CSV upload functionality.
+A full-stack application for managing football players with CRUD operations, CSV upload functionality, and advanced filtering capabilities.
+
+## ✨ Features
+
+-   **Player Management**: Full CRUD operations for football players
+-   **CSV Import/Export**: Bulk player data management via CSV files
+-   **Advanced Filtering**: Filter players by:
+    -   Name (search across first and last names)
+    -   Age range
+    -   Height range
+    -   Nationalities (with flag display and continent grouping)
+    -   Positions (with full names and role grouping)
+-   **Visual Enhancements**:
+    -   Country flags displayed for player nationalities
+    -   Full position names (e.g., "Centre Forward (CF)" instead of just "CF")
+    -   Grouped filtering by continents and position roles
+-   **Responsive Design**: Modern Material-UI interface that works on all devices
 
 ## Tech Stack
 
@@ -22,7 +38,7 @@ A full-stack application for managing football players with CRUD operations and 
 
     ```bash
     git clone https://github.com/ArHises/Football-Application.git
-    cd FullstackTest
+    cd Football-Application
     ```
 
 2. **Start all services**:
@@ -90,9 +106,37 @@ CREATE TABLE players (
 The CSV file should have the following columns:
 
 ```
-firstName,lastName,nationality,position,age,height
-John,Doe,USA,Forward,25,180.5
+firstName,lastName,nationalities,dateOfBirth,positions,heightCm
+Lionel,Messi,Argentina,1987-06-24,RW;CF,169
+Cristiano,Ronaldo,Portugal,1985-02-05,LW;ST,187
+Kylian,Mbappe,France,1998-12-20,ST;LW,178
 ```
+
+**Note**:
+
+-   Multiple nationalities and positions can be separated by semicolons (;)
+-   Date format should be yyyy-MM-dd
+-   Height should be in centimeters
+-   A sample `Example.csv` file is provided in the project root
+
+### Enhanced Filtering
+
+The application now supports advanced filtering with:
+
+#### Position Groups:
+
+-   **Defenders**: Centre-Back (CB), Right-Back (RB), Left-Back (LB), Left Wing-Back (LWB), Right Wing-Back (RWB)
+-   **Midfielders**: Defensive Midfielder (CDM), Centre Midfielder (CM), Central Attacking Midfielder (CAM), Right Midfielder (RM), Left Midfielder (LM)
+-   **Forwards**: Right Forward (RF), Left Forward (LF), Centre Forward (CF), Striker (ST), Left Wing (LW), Right Wing (RW)
+
+#### Nationality Groups:
+
+-   **Europe**: Including countries like Germany, France, Spain, Italy, etc.
+-   **South America**: Including Brazil, Argentina, Uruguay, etc.
+-   **Africa**: Including Nigeria, Morocco, Senegal, etc.
+-   **Asia**: Including Japan, South Korea, Iran, etc.
+-   **North America**: Including USA, Mexico, Canada, etc.
+-   **Oceania**: Including Australia, New Zealand, etc.
 
 ### Project Structure
 

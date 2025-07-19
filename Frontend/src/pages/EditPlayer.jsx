@@ -3,13 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Container, Typography, Box, Alert } from "@mui/material";
 import { PlayerForm } from "../components/player";
 import { LoadingSpinner } from "../components/common";
-import { MESSAGES } from "../utils/constants";
-import {
-    getPlayerById,
-    updatePlayer,
-    fetchAvailableNationalities,
-    fetchAvailablePositions,
-} from "../api/playerApi";
+import { MESSAGES, PLAYER_CONSTANTS } from "../utils/constants";
+import { getPlayerById, updatePlayer } from "../api/playerApi";
 
 const EditPlayer = () => {
     const { id } = useParams();
@@ -30,21 +25,26 @@ const EditPlayer = () => {
             setFetchingPlayer(true);
             setError("");
 
-            const [playerResponse, nationalitiesResponse, positionsResponse] =
-                await Promise.all([
-                    getPlayerById(id),
-                    fetchAvailableNationalities(),
-                    fetchAvailablePositions(),
-                ]);
-
+            // Fetch player data
+            const playerResponse = await getPlayerById(id);
             setPlayer(playerResponse.data);
-            setAvailableNationalities(nationalitiesResponse.data);
-            setAvailablePositions(positionsResponse.data);
+
+            // Always use fallback data instead of API for nationalities and positions
+            setAvailableNationalities(
+                PLAYER_CONSTANTS.FALLBACK_DATA.NATIONALITIES
+            );
+            setAvailablePositions(PLAYER_CONSTANTS.FALLBACK_DATA.POSITIONS);
         } catch (err) {
             console.error("Error fetching player data:", err);
             if (err.response?.status === 404) {
                 setError("Player not found");
             } else {
+                // Use fallback data for options
+                setAvailableNationalities(
+                    PLAYER_CONSTANTS.FALLBACK_DATA.NATIONALITIES
+                );
+                setAvailablePositions(PLAYER_CONSTANTS.FALLBACK_DATA.POSITIONS);
+
                 setError(
                     err.response?.data?.message ||
                         err.message ||

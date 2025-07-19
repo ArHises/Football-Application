@@ -60,3 +60,86 @@
     text-transform: none;
     font-weight: 500;
 }
+
+/* Enhanced Filter Styles */
+.accordion {
+    margin-bottom: 16px !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+
+.accordion:before {
+    display: none;
+}
+
+.accordion .MuiAccordionSummary-root {
+    background-color: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+    min-height: 56px;
+}
+
+.accordion .MuiAccordionSummary-root:hover {
+    background-color: #e9ecef;
+}
+
+.accordion .MuiAccordionDetails-root {
+    padding: 20px;
+    background-color: white;
+}
+
+.continentGroup {
+    margin-bottom: 16px;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.continentTitle {
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.positionGroup {
+    margin-bottom: 16px;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+.positionGroupTitle {
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkboxGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.groupButton {
+    margin-top: 8px !important;
+    font-size: 0.75rem !important;
+}
+
+/* Responsive enhancements */
+@media (max-width: 768px) {
+    .accordion .MuiAccordionDetails-root {
+        padding: 12px;
+    }
+
+    .continentGroup,
+    .positionGroup {
+        padding: 8px;
+        margin-bottom: 12px;
+    }
+}

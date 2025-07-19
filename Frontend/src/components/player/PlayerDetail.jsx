@@ -13,8 +13,14 @@ import {
 } from "@mui/material";
 import { ArrowBack, Edit, Delete, Person } from "@mui/icons-material";
 import { getPlayerById, deletePlayer } from "../../api/playerApi";
-import { LoadingSpinner, ErrorAlert, DeleteConfirmationModal } from "../common";
+import {
+    LoadingSpinner,
+    ErrorAlert,
+    DeleteConfirmationModal,
+    FlagIcon,
+} from "../common";
 import { formatters } from "../../utils";
+import { formatPositionWithFullName } from "../../utils/flagsAndGroups";
 import styles from "../../styles/components/PlayerDetail.module.css";
 
 const PlayerDetail = () => {
@@ -141,7 +147,8 @@ const PlayerDetail = () => {
                 <Button
                     startIcon={<ArrowBack />}
                     onClick={() => navigate("/")}
-                    className={styles.backButton}>
+                    className={styles.backButton}
+                >
                     Back to Players
                 </Button>
                 <Box className={styles.actions}>
@@ -149,7 +156,8 @@ const PlayerDetail = () => {
                         variant="outlined"
                         startIcon={<Edit />}
                         onClick={handleEdit}
-                        className={styles.editButton}>
+                        className={styles.editButton}
+                    >
                         Edit
                     </Button>
                     <Button
@@ -157,7 +165,8 @@ const PlayerDetail = () => {
                         color="error"
                         startIcon={<Delete />}
                         onClick={handleDelete}
-                        className={styles.deleteButton}>
+                        className={styles.deleteButton}
+                    >
                         Delete
                     </Button>
                 </Box>
@@ -174,13 +183,15 @@ const PlayerDetail = () => {
                         <Box className={styles.playerInfo}>
                             <Typography
                                 variant="h4"
-                                className={styles.playerName}>
+                                className={styles.playerName}
+                            >
                                 {player.firstName} {player.lastName}
                             </Typography>
                             <Typography
                                 variant="h6"
                                 color="textSecondary"
-                                className={styles.playerId}>
+                                className={styles.playerId}
+                            >
                                 Player ID: {player.id}
                             </Typography>
                         </Box>
@@ -194,7 +205,8 @@ const PlayerDetail = () => {
                         <Grid size={{ xs: 12, md: 6 }}>
                             <Typography
                                 variant="h6"
-                                className={styles.sectionTitle}>
+                                className={styles.sectionTitle}
+                            >
                                 Basic Information
                             </Typography>
                             <Box className={styles.infoSection}>
@@ -234,7 +246,8 @@ const PlayerDetail = () => {
                         <Grid size={{ xs: 12, md: 6 }}>
                             <Typography
                                 variant="h6"
-                                className={styles.sectionTitle}>
+                                className={styles.sectionTitle}
+                            >
                                 Professional Information
                             </Typography>
                             <Box className={styles.infoSection}>
@@ -248,13 +261,22 @@ const PlayerDetail = () => {
                                             .map((nationality) => (
                                                 <Chip
                                                     key={nationality}
+                                                    icon={
+                                                        <FlagIcon
+                                                            nationality={
+                                                                nationality
+                                                            }
+                                                            size="16px"
+                                                        />
+                                                    }
                                                     label={nationality}
                                                     className={styles.chip}
                                                     variant="outlined"
                                                 />
                                             )) || (
                                             <Typography
-                                                className={styles.value}>
+                                                className={styles.value}
+                                            >
                                                 N/A
                                             </Typography>
                                         )}
@@ -270,13 +292,16 @@ const PlayerDetail = () => {
                                             .map((position) => (
                                                 <Chip
                                                     key={position}
-                                                    label={position}
+                                                    label={formatPositionWithFullName(
+                                                        position
+                                                    )}
                                                     className={styles.chip}
                                                     color="primary"
                                                 />
                                             )) || (
                                             <Typography
-                                                className={styles.value}>
+                                                className={styles.value}
+                                            >
                                                 N/A
                                             </Typography>
                                         )}
@@ -289,7 +314,8 @@ const PlayerDetail = () => {
                         <Grid size={{ xs: 12 }}>
                             <Typography
                                 variant="h6"
-                                className={styles.sectionTitle}>
+                                className={styles.sectionTitle}
+                            >
                                 System Information
                             </Typography>
                             <Box className={styles.infoSection}>
@@ -297,11 +323,13 @@ const PlayerDetail = () => {
                                     <Grid size={{ xs: 12, sm: 6 }}>
                                         <Box className={styles.infoItem}>
                                             <Typography
-                                                className={styles.label}>
+                                                className={styles.label}
+                                            >
                                                 Created:
                                             </Typography>
                                             <Typography
-                                                className={styles.value}>
+                                                className={styles.value}
+                                            >
                                                 {formatters.formatDate(
                                                     player.createdAt
                                                 )}
@@ -311,11 +339,13 @@ const PlayerDetail = () => {
                                     <Grid size={{ xs: 12, sm: 6 }}>
                                         <Box className={styles.infoItem}>
                                             <Typography
-                                                className={styles.label}>
+                                                className={styles.label}
+                                            >
                                                 Last Modified:
                                             </Typography>
                                             <Typography
-                                                className={styles.value}>
+                                                className={styles.value}
+                                            >
                                                 {formatters.formatDate(
                                                     player.modifiedAt
                                                 )}

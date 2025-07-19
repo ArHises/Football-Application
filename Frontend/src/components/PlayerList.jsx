@@ -8,7 +8,8 @@ import {
     fetchAvailablePositions,
 } from "../api/playerApi";
 import { useNavigate } from "react-router-dom";
-import { PlayerTable, PlayerFilters } from "./player";
+import { PlayerTable } from "./player";
+import EnhancedPlayerFilters from "./player/EnhancedPlayerFilters";
 import { LoadingSpinner, ErrorAlert } from "./common";
 import { PLAYER_CONSTANTS } from "../utils/constants";
 import styles from "../styles/components/PlayerList.module.css";
@@ -210,7 +211,8 @@ const PlayerList = () => {
                     variant="outlined"
                     startIcon={<FilterList />}
                     onClick={() => setShowFilters(!showFilters)}
-                    className={styles.filterToggleButton}>
+                    className={styles.filterToggleButton}
+                >
                     {showFilters ? "Hide Filters" : "Show Filters"}
                 </Button>
             </Box>
@@ -222,12 +224,13 @@ const PlayerList = () => {
                     mb: 2,
                     textAlign: "center",
                     fontStyle: "italic",
-                }}>
+                }}
+            >
                 💡 Click on any row to view detailed player information
             </Typography>
 
             {showFilters && (
-                <PlayerFilters
+                <EnhancedPlayerFilters
                     nameFilter={nameFilter}
                     nationalityFilter={nationalityFilter}
                     ageRange={ageRange}

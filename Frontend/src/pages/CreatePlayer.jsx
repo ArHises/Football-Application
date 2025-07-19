@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Container, Typography, Box, Alert } from "@mui/material";
 import { PlayerForm } from "../components/player";
 import { LoadingSpinner } from "../components/common";
-import { MESSAGES } from "../utils/constants";
+import { MESSAGES, PLAYER_CONSTANTS } from "../utils/constants";
 import {
     createPlayer,
     fetchAvailableNationalities,
@@ -25,19 +25,19 @@ const CreatePlayer = () => {
     const fetchFormOptions = async () => {
         try {
             setLoadingOptions(true);
-            const [nationalitiesResponse, positionsResponse] =
-                await Promise.all([
-                    fetchAvailableNationalities(),
-                    fetchAvailablePositions(),
-                ]);
 
-            setAvailableNationalities(nationalitiesResponse.data);
-            setAvailablePositions(positionsResponse.data);
-        } catch (err) {
-            console.error("Error fetching form options:", err);
-            setError(
-                "Failed to load form options. Some features may not work correctly."
+            // Always use fallback data instead of API
+            setAvailableNationalities(
+                PLAYER_CONSTANTS.FALLBACK_DATA.NATIONALITIES
             );
+            setAvailablePositions(PLAYER_CONSTANTS.FALLBACK_DATA.POSITIONS);
+        } catch (err) {
+            console.error("Error setting form options:", err);
+            // Use fallback data when anything fails
+            setAvailableNationalities(
+                PLAYER_CONSTANTS.FALLBACK_DATA.NATIONALITIES
+            );
+            setAvailablePositions(PLAYER_CONSTANTS.FALLBACK_DATA.POSITIONS);
         } finally {
             setLoadingOptions(false);
         }
