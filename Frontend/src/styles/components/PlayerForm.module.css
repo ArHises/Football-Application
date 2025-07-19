@@ -1,0 +1,401 @@
+/* PlayerForm.module.css */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.card {
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.cardContent {
+    padding: 40px !important;
+    background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+}
+
+.title {
+    font-weight: 600 !important;
+    color: #1a1a1a;
+    margin-bottom: 24px !important;
+    text-align: center;
+}
+
+.alert {
+    margin-bottom: 24px !important;
+    border-radius: 8px !important;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+/* Column styling */
+.form .MuiGrid-item:nth-child(1) {
+    background: white;
+    border-radius: 12px;
+    padding: 24px !important;
+    margin-right: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f0f0f0;
+}
+
+.form .MuiGrid-item:nth-child(2) {
+    background: white;
+    border-radius: 12px;
+    padding: 24px !important;
+    margin-left: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f0f0f0;
+}
+
+.sectionTitle {
+    font-weight: 600 !important;
+    color: #333;
+    margin-bottom: 20px !important;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sectionTitle:before {
+    content: "";
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+    border-radius: 2px;
+}
+
+.textField {
+    margin-bottom: 8px !important;
+}
+
+.textField .MuiOutlinedInput-root {
+    border-radius: 8px !important;
+    transition: all 0.2s ease;
+}
+
+.textField .MuiOutlinedInput-root:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.textField .MuiOutlinedInput-root.Mui-focused {
+    box-shadow: 0 2px 12px rgba(25, 118, 210, 0.2);
+}
+
+.ageDisplay {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding: 0 12px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.chipContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.chip {
+    margin: 2px !important;
+    font-size: 0.75rem !important;
+    height: 24px !important;
+}
+
+.helperText {
+    margin-left: 14px !important;
+    margin-top: 4px !important;
+    display: block;
+}
+
+.infoBox {
+    background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+    border: 1px solid #e3f2fd;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 16px;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+}
+
+.infoTitle {
+    font-weight: 600 !important;
+    color: #1976d2 !important;
+    margin-bottom: 12px !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tipsList {
+    margin: 0;
+    padding-left: 20px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.tipsList li {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.tipsList li:before {
+    content: "✓";
+    position: absolute;
+    left: -20px;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.tipsList li:last-child {
+    margin-bottom: 0;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.cancelButton {
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    border-color: #d0d0d0 !important;
+    color: #666 !important;
+    transition: all 0.2s ease;
+}
+
+.cancelButton:hover {
+    background-color: #f5f5f5 !important;
+    border-color: #bbb !important;
+    transform: translateY(-1px);
+}
+
+.submitButton {
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%) !important;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3) !important;
+    transition: all 0.2s ease;
+}
+
+.submitButton:hover {
+    background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%) !important;
+    box-shadow: 0 6px 16px rgba(25, 118, 210, 0.4) !important;
+    transform: translateY(-2px);
+}
+
+.submitButton:disabled {
+    background: #cccccc !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+        max-width: 100%;
+    }
+
+    .cardContent {
+        padding: 24px 20px !important;
+        background: white;
+    }
+
+    .title {
+        font-size: 1.4rem !important;
+        margin-bottom: 20px !important;
+        text-align: center;
+    }
+
+    .sectionTitle {
+        font-size: 1.1rem !important;
+        margin-bottom: 16px !important;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .actions button {
+        width: 100%;
+        order: 2;
+    }
+
+    .cancelButton {
+        order: 1;
+    }
+
+    .chipContainer {
+        max-height: 60px;
+    }
+
+    .infoBox {
+        padding: 16px;
+        margin-top: 12px;
+    }
+
+    .tipsList {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 960px) {
+    .form .MuiGrid-item:nth-child(1),
+    .form .MuiGrid-item:nth-child(2) {
+        margin: 0 0 16px 0 !important;
+        padding: 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 8px;
+    }
+
+    .cardContent {
+        padding: 16px !important;
+        background: white;
+    }
+
+    .title {
+        font-size: 1.2rem !important;
+    }
+
+    .sectionTitle {
+        font-size: 1rem !important;
+        margin-bottom: 12px !important;
+    }
+
+    .textField {
+        margin-bottom: 12px !important;
+    }
+
+    .form .MuiGrid-item:nth-child(1),
+    .form .MuiGrid-item:nth-child(2) {
+        padding: 16px !important;
+        margin: 0 0 12px 0 !important;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .infoBox {
+        padding: 12px;
+        margin-top: 8px;
+    }
+
+    .tipsList {
+        font-size: 0.8rem;
+        padding-left: 16px;
+    }
+}
+
+/* Form Field Enhancements */
+.textField .MuiInputLabel-root {
+    font-weight: 500;
+    color: #555;
+}
+
+.textField .MuiInputLabel-root.Mui-focused {
+    color: #1976d2;
+    font-weight: 600;
+}
+
+.textField .MuiFormHelperText-root {
+    font-size: 0.75rem;
+    margin-top: 4px;
+    margin-left: 8px;
+}
+
+.textField .MuiFormHelperText-root.Mui-error {
+    color: #d32f2f;
+    font-weight: 500;
+}
+
+/* Multi-select styling */
+.textField .MuiSelect-root {
+    min-height: 40px;
+}
+
+.textField .MuiSelect-select {
+    padding: 12px !important;
+}
+
+/* Animation for form validation */
+.textField .MuiOutlinedInput-root.Mui-error {
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-4px);
+    }
+    75% {
+        transform: translateX(4px);
+    }
+}
+
+/* Loading state */
+.submitButton.Mui-disabled {
+    position: relative;
+}
+
+.submitButton.Mui-disabled::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    border: 2px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes spin {
+    0% {
+        transform: translateY(-50%) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* Focus states for accessibility */
+.textField .MuiOutlinedInput-root:focus-within {
+    outline: 2px solid rgba(25, 118, 210, 0.5);
+    outline-offset: 2px;
+}
+
+.cancelButton:focus,
+.submitButton:focus {
+    outline: 2px solid rgba(25, 118, 210, 0.5);
+    outline-offset: 2px;
+}

@@ -28,6 +28,7 @@ public class PlayerService {
         player.setCreatedAt(LocalDate.now());
         player.setModifiedAt(LocalDate.now());
         Player saved = playerRepository.save(player);
+        System.out.println(saved.getFirstName() + " CREATED");
         return PlayerMapper.toDto(saved);
     }
 
@@ -57,6 +58,14 @@ public class PlayerService {
                 .toList();
     }
 
+    public List<String> getAllNationalities() {
+        return playerRepository.findDistinctNationalities();
+    }
+
+    public List<String> getAllPositions() {
+        return playerRepository.findDistinctPositions();
+    }
+
     public PlayerDto update(Long id, PlayerDto newDataDto) {
         return playerRepository.findById(id)
                 .map(existing -> {
@@ -65,6 +74,7 @@ public class PlayerService {
                     newData.setCreatedAt(existing.getCreatedAt());
                     newData.setModifiedAt(LocalDate.now());
                     Player saved = playerRepository.save(newData);
+                    System.out.println(newDataDto.getFirstName() + " UPDATED");
                     return PlayerMapper.toDto(saved);
                 })
                 .orElseThrow(() -> new NoSuchElementException("Player not found"));
@@ -72,7 +82,14 @@ public class PlayerService {
 
     public Optional<PlayerDto> delete(Long id) {
         Optional<Player> playerOpt = playerRepository.findById(id);
+        Optional<PlayerDto> dtoOpt = playerOpt.map(player -> {
+            // Eagerly load collections before mapping to DTO
+            player.getNationalities().size();
+            player.getPositions().size();
+            return PlayerMapper.toDto(player);
+        });
         playerOpt.ifPresent(player -> playerRepository.deleteById(id));
-        return playerOpt.map(PlayerMapper::toDto);
+        dtoOpt.ifPresent(dto -> System.out.println(dto.getFirstName() + " DELETED!"));
+        return dtoOpt;
     }
 }

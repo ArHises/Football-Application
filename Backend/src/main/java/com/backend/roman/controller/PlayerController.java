@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -62,19 +63,42 @@ public class PlayerController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
-        return playerService.delete(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        try {
+            Optional<PlayerDto> deleted = playerService.delete(id);
+            if (deleted.isPresent()) {
+                return ResponseEntity.ok(deleted.get());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            // Log the error for debugging
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Error deleting player: " + e.getMessage());
+        }
     }
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadCSV(@RequestParam("file") MultipartFile file) {
         try {
             List<Player> players = csvService.parseAndSave(file);
-            return ResponseEntity.ok(players);
+            List<PlayerDto> playerDtos = players.stream()
+                .map(com.backend.roman.mapper.PlayerMapper::toDto)
+                .toList();
+            System.out.println("CSV file uploaded!");
+            return ResponseEntity.ok(playerDtos);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @GetMapping("/nationalities")
+    public ResponseEntity<List<String>> getNationalities() {
+        return ResponseEntity.ok(playerService.getAllNationalities());
+    }
+
+    @GetMapping("/positions")
+    public ResponseEntity<List<String>> getPositions() {
+        return ResponseEntity.ok(playerService.getAllPositions());
     }
 
 }

@@ -1,0 +1,46 @@
+/* PlayerList Page Component Styles */
+.container {
+    padding: 16px;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: "Inter", "Roboto", sans-serif;
+}
+
+.title {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+    letter-spacing: -0.02em;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.filterToggleButton {
+    font-family: "Inter", "Roboto", sans-serif;
+    text-transform: none;
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 8px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+}

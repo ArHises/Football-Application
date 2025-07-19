@@ -1,0 +1,63 @@
+/* Player Filters Component Styles */
+.container {
+    font-family: "Inter", "Roboto", sans-serif;
+}
+
+.title {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-weight: 600;
+    color: #333;
+}
+
+.textField {
+    font-family: "Inter", "Roboto", sans-serif;
+}
+
+.chipContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.chip {
+    max-width: 120px;
+    font-family: "Inter", "Roboto", sans-serif;
+}
+
+.chip :global(.MuiChip-label) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sliderLabel {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.slider {
+    font-family: "Inter", "Roboto", sans-serif;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    width: 400px;
+}
+
+.applyButton {
+    font-family: "Inter", "Roboto", sans-serif;
+    text-transform: none;
+    font-weight: 500;
+}
+
+.clearButton {
+    font-family: "Inter", "Roboto", sans-serif;
+    text-transform: none;
+    font-weight: 500;
+}

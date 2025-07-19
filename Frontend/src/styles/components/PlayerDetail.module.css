@@ -1,0 +1,157 @@
+/* Player Detail Component Styles */
+.container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: "Inter", "Roboto", sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.backButton {
+    font-family: "Inter", "Roboto", sans-serif;
+    text-transform: none;
+    font-weight: 500;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.editButton,
+.deleteButton {
+    font-family: "Inter", "Roboto", sans-serif;
+    text-transform: none;
+    font-weight: 500;
+}
+
+.card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.cardContent {
+    padding: 32px;
+}
+
+.playerHeader {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #1976d2, #42a5f5);
+    font-size: 2rem;
+}
+
+.playerInfo {
+    flex: 1;
+}
+
+.playerName {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-weight: 700;
+    color: #1976d2;
+    margin-bottom: 8px;
+}
+
+.playerId {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+.sectionTitle {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #1976d2;
+    padding-bottom: 8px;
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.label {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.value {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-weight: 400;
+    color: #333;
+    font-size: 1rem;
+}
+
+.chipContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.chip {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .cardContent {
+        padding: 24px 16px;
+    }
+
+    .playerHeader {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .playerName {
+        font-size: 1.8rem;
+    }
+}

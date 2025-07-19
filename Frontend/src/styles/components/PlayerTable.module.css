@@ -1,0 +1,33 @@
+/* Player Table Component Styles */
+.container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.dataGrid {
+    font-family: "Inter", "Roboto", sans-serif;
+}
+
+/* Custom DataGrid styles */
+.dataGrid :global(.MuiDataGrid-cell) {
+    border-bottom: 1px solid #e0e0e0;
+    font-family: "Inter", "Roboto", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.dataGrid :global(.MuiDataGrid-columnHeaders) {
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #e0e0e0;
+    font-weight: 600;
+}
+
+.dataGrid :global(.MuiDataGrid-row:hover) {
+    background-color: #f9f9f9;
+}
+
+.dataGrid :global(.MuiDataGrid-columnHeaderTitle) {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+}

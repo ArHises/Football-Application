@@ -26,9 +26,9 @@ public class Player {
     private List<String> nationalities;
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateOfBirth;
-    @ElementCollection private List<String> positions;
+    @ElementCollection
+    private List<String> positions;
     private Double heightCm;
     private LocalDate createdAt;
     private LocalDate modifiedAt;
-
 }

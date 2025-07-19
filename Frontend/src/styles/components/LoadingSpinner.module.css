@@ -1,0 +1,17 @@
+/* Loading Spinner Component Styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    gap: 16px;
+}
+
+.message {
+    font-family: "Inter", "Roboto", sans-serif;
+    color: #666;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+}

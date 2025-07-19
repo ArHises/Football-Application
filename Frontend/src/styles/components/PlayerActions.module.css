@@ -1,0 +1,55 @@
+/* Player Actions Component Styles */
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.button {
+    padding: 3px 8px;
+    border: 1px solid;
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    font-family: "Inter", "Roboto", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.viewButton {
+    border-color: #4caf50;
+    color: #4caf50;
+}
+
+.viewButton:hover {
+    background-color: #4caf50;
+    color: white;
+}
+
+.editButton {
+    border-color: #1976d2;
+    color: #1976d2;
+}
+
+.editButton:hover {
+    background-color: #1976d2;
+    color: white;
+}
+
+.deleteButton {
+    border-color: #d32f2f;
+    color: #d32f2f;
+}
+
+.deleteButton:hover {
+    background-color: #d32f2f;
+    color: white;
+}

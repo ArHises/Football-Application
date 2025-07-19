@@ -1,0 +1,51 @@
+/* Home Page Styles */
+.container {
+    padding: 24px;
+    font-family: "Inter", "Roboto", sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.title {
+    font-family: "Inter", "Roboto", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1976d2;
+    margin: 0;
+    letter-spacing: -0.025em;
+}
+
+.addButton,
+.uploadButton {
+    font-family: "Inter", "Roboto", sans-serif;
+    text-transform: none;
+    font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
