@@ -1,6 +1,5 @@
 import { createTheme } from "@mui/material/styles";
 
-// Custom theme with Inter and Roboto fonts
 const theme = createTheme({
     typography: {
         fontFamily:

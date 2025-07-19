@@ -127,7 +127,6 @@ const UploadCsv = ({ onUploadComplete, onClose }) => {
         setUploadProgress(0);
 
         try {
-            // Simulate progress updates
             const progressInterval = setInterval(() => {
                 setUploadProgress((prev) => {
                     if (prev >= 90) {
@@ -146,7 +145,6 @@ const UploadCsv = ({ onUploadComplete, onClose }) => {
             const result = response.data;
             setResults(result);
 
-            // Auto-close after successful upload
             setTimeout(() => {
                 onUploadComplete(result);
             }, 2000);

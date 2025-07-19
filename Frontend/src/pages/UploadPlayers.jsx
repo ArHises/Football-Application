@@ -9,7 +9,6 @@ function UploadPlayers() {
     const navigate = useNavigate();
 
     const handleUploadComplete = () => {
-        // Navigate back to home page after successful upload
         navigate("/");
     };
 

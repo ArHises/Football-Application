@@ -64,7 +64,6 @@ const EditPlayer = () => {
             const response = await updatePlayer(id, playerData);
             const updatedPlayer = response.data;
 
-            // Navigate to player detail page
             navigate(`/players/${updatedPlayer.id}`, {
                 state: {
                     message: MESSAGES.SUCCESS.PLAYER_UPDATED,

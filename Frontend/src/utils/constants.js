@@ -1,4 +1,3 @@
-// Application constants
 export const PLAYER_CONSTANTS = {
     PAGINATION: {
         DEFAULT_PAGE_SIZE: 10,
@@ -21,7 +20,7 @@ export const PLAYER_CONSTANTS = {
         MAX_HEIGHT: 230,
         MIN_NAME_LENGTH: 2,
         MAX_NAME_LENGTH: 50,
-        MAX_FILE_SIZE: 5 * 1024 * 1024, // 5MB
+        MAX_FILE_SIZE: 5 * 1024 * 1024,
     },
 
     SORT_OPTIONS: [

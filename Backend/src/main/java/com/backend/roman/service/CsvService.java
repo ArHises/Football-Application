@@ -52,7 +52,6 @@ public class CsvService {
                 try {
                     PlayerCsvDto dto = parseRecord(record);
 
-                    // Validation
                     if (dto.getFirstName() == null || dto.getLastName() == null || dto.getDateOfBirth() == null) {
                         logger.warn("Missing required fields in row {}: {}", record.getRecordNumber(), record);
                         continue;
@@ -86,7 +85,6 @@ public class CsvService {
 
                     buffer.add(player);
 
-                    // Save in batches of 1000 (to avoid memory issues)
                     if (buffer.size() == 1000) {
                         players.addAll(playerRepository.saveAll(buffer));
                         buffer.clear();

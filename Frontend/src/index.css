@@ -1,4 +1,3 @@
-/* Global CSS Reset and Font Setup */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -15,7 +14,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    /* Color variables */
     --primary-color: #1976d2;
     --secondary-color: #dc004e;
     --background-color: #ffffff;
@@ -78,7 +76,6 @@ textarea {
     font-family: "Inter", "Roboto", sans-serif;
 }
 
-/* Material-UI Typography Override */
 .MuiTypography-root {
     font-family: "Inter", "Roboto", sans-serif !important;
 }

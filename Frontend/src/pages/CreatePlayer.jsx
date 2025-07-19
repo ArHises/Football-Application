@@ -51,7 +51,6 @@ const CreatePlayer = () => {
             const response = await createPlayer(playerData);
             const newPlayer = response.data;
 
-            // Navigate to home page after successful creation
             navigate("/", {
                 state: {
                     message: MESSAGES.SUCCESS.PLAYER_CREATED,

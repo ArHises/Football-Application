@@ -36,8 +36,27 @@ const DeleteConfirmationModal = ({
 
     const getPlayerAge = () => {
         if (!player.dateOfBirth) return "Unknown";
+
+        let birthDate;
+
+        if (
+            player.dateOfBirth.includes("-") &&
+            player.dateOfBirth.split("-").length === 3
+        ) {
+            const parts = player.dateOfBirth.split("-");
+            if (parts[0].length === 2) {
+                const [day, month, year] = parts;
+                birthDate = new Date(year, month - 1, day);
+            } else {
+                birthDate = new Date(player.dateOfBirth);
+            }
+        } else {
+            birthDate = new Date(player.dateOfBirth);
+        }
+
+        if (isNaN(birthDate.getTime())) return "Unknown";
+
         const today = new Date();
-        const birthDate = new Date(player.dateOfBirth);
         const age = today.getFullYear() - birthDate.getFullYear();
         const monthDiff = today.getMonth() - birthDate.getMonth();
 

@@ -15,13 +15,12 @@ import styles from "../styles/components/PlayerList.module.css";
 
 const PlayerList = () => {
     const [players, setPlayers] = useState([]);
-    const [allPlayers, setAllPlayers] = useState([]); // Store all players for filtering
+    const [allPlayers, setAllPlayers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [filters, setFilters] = useState({});
     const [showFilters, setShowFilters] = useState(false);
 
-    // Filter states
     const [nameFilter, setNameFilter] = useState("");
     const [nationalityFilter, setNationalityFilter] = useState([]);
     const [ageRange, setAgeRange] = useState(
@@ -32,7 +31,6 @@ const PlayerList = () => {
         PLAYER_CONSTANTS.FILTERS.DEFAULT_HEIGHT_RANGE
     );
 
-    // Available options (fetched from API)
     const [availableNationalities, setAvailableNationalities] = useState([]);
     const [availablePositions, setAvailablePositions] = useState([]);
 
@@ -41,9 +39,9 @@ const PlayerList = () => {
     const loadPlayers = async () => {
         try {
             setLoading(true);
-            const response = await fetchPlayers(); // Fetch all players without filters
-            setAllPlayers(response.data); // Store all players
-            setPlayers(response.data); // Initially show all players
+            const response = await fetchPlayers();
+            setAllPlayers(response.data);
+            setPlayers(response.data);
             setError(null);
         } catch (err) {
             setError("Failed to fetch players: " + err.message);
@@ -64,7 +62,6 @@ const PlayerList = () => {
             setAvailablePositions(positionsResponse.data);
         } catch (err) {
             console.error("Error fetching available options:", err);
-            // Fallback to hardcoded values if API fails
             setAvailableNationalities(
                 PLAYER_CONSTANTS.FALLBACK_DATA.NATIONALITIES
             );
@@ -175,7 +172,6 @@ const PlayerList = () => {
     const handleDelete = async (id) => {
         try {
             await deletePlayer(id);
-            // Update both the complete dataset and current filtered view
             const updatedAllPlayers = allPlayers.filter(
                 (player) => player.id !== id
             );
@@ -184,6 +180,7 @@ const PlayerList = () => {
         } catch (err) {
             setError("Failed to delete player: " + err.message);
             console.error("Error deleting player:", err);
+            throw err;
         }
     };
 

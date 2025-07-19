@@ -1,13 +1,10 @@
-// Date and data formatting utilities
 export const formatters = {
     formatDate: (dateString, format = "dd/MM/yyyy") => {
         if (!dateString) return "";
 
-        // Handle dd-MM-yyyy format from backend
         if (dateString.includes("-") && dateString.split("-").length === 3) {
             const [day, month, year] = dateString.split("-");
             if (day.length === 2) {
-                // dd-MM-yyyy format
                 const date = new Date(year, month - 1, day);
                 return date.toLocaleDateString("en-GB", {
                     day: "2-digit",
@@ -17,7 +14,6 @@ export const formatters = {
             }
         }
 
-        // Handle yyyy-MM-dd format
         const date = new Date(dateString + "T00:00:00");
         if (isNaN(date.getTime())) return "";
 

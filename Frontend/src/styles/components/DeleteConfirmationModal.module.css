@@ -315,10 +315,3 @@
     outline: 2px solid rgba(25, 118, 210, 0.5);
     outline-offset: 2px;
 }
-
-/* Hover effects for interactive elements */
-.playerInfo:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: all 0.2s ease;
-}
