@@ -19,7 +19,6 @@ const PlayerList = () => {
     const [allPlayers, setAllPlayers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [filters, setFilters] = useState({});
     const [showFilters, setShowFilters] = useState(false);
 
     const [nameFilter, setNameFilter] = useState("");

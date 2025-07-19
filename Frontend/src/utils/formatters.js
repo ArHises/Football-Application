@@ -35,20 +35,6 @@ export const formatters = {
         return `${height}cm`;
     },
 
-    formatNationalities: (nationalities) => {
-        if (!nationalities || !Array.isArray(nationalities)) return "";
-        return nationalities
-            .map((nationality) => formatNationalityWithFlag(nationality))
-            .join(", ");
-    },
-
-    formatPositions: (positions) => {
-        if (!positions || !Array.isArray(positions)) return "";
-        return positions
-            .map((position) => formatPositionWithFullName(position))
-            .join(", ");
-    },
-
     formatArray: (array, separator = ", ") => {
         if (!array || !Array.isArray(array)) return "";
         return array.join(separator);
