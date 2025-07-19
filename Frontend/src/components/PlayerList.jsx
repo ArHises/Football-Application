@@ -77,16 +77,21 @@ const PlayerList = () => {
     const applyFilters = () => {
         let filteredPlayers = [...allPlayers];
 
-        // Name filter
+        // Improved name filter - search in first name, last name, or full name
         if (nameFilter.trim()) {
-            filteredPlayers = filteredPlayers.filter((player) =>
-                `${player.firstName} ${player.lastName}`
-                    .toLowerCase()
-                    .includes(nameFilter.toLowerCase())
-            );
+            filteredPlayers = filteredPlayers.filter((player) => {
+                const fullName =
+                    `${player.firstName} ${player.lastName}`.toLowerCase();
+                const searchTerm = nameFilter.toLowerCase();
+                return (
+                    player.firstName.toLowerCase().includes(searchTerm) ||
+                    player.lastName.toLowerCase().includes(searchTerm) ||
+                    fullName.includes(searchTerm)
+                );
+            });
         }
 
-        // Nationality filter
+        // Improved nationality filter
         if (nationalityFilter.length > 0) {
             filteredPlayers = filteredPlayers.filter((player) =>
                 player.nationalities?.some((nationality) =>
@@ -155,7 +160,6 @@ const PlayerList = () => {
 
         setPlayers(filteredPlayers);
     };
-
     const clearFilters = () => {
         setNameFilter("");
         setNationalityFilter([]);

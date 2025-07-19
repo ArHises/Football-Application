@@ -79,7 +79,20 @@ public class CsvService {
                     player.setNationalities(split(dto.getNationalities()));
                     player.setDateOfBirth(dob);
                     player.setPositions(split(dto.getPositions()));
-                    player.setHeightCm(Double.parseDouble(dto.getHeightCm()));
+                    
+                    // Parse height with error handling
+                    try {
+                        if (dto.getHeightCm() != null && !dto.getHeightCm().trim().isEmpty()) {
+                            player.setHeightCm(Double.parseDouble(dto.getHeightCm().trim()));
+                        } else {
+                            logger.warn("Missing height at row {}, setting to 0", record.getRecordNumber());
+                            player.setHeightCm(0.0);
+                        }
+                    } catch (NumberFormatException e) {
+                        logger.warn("Invalid height format at row {}: {}, setting to 0", record.getRecordNumber(), dto.getHeightCm());
+                        player.setHeightCm(0.0);
+                    }
+                    
                     player.setCreatedAt(LocalDate.now());
                     player.setModifiedAt(LocalDate.now());
 
@@ -103,12 +116,17 @@ public class CsvService {
 
     private PlayerCsvDto parseRecord(CSVRecord record) {
         PlayerCsvDto dto = new PlayerCsvDto();
-        dto.setFirstName(record.get("firstName"));
-        dto.setLastName(record.get("lastName"));
-        dto.setNationalities(record.get("nationalities"));
-        dto.setDateOfBirth(record.get("dateOfBirth"));
-        dto.setPositions(record.get("positions"));
-        dto.setHeightCm(record.get("heightCm"));
+        try {
+            dto.setFirstName(record.get("firstName"));
+            dto.setLastName(record.get("lastName"));
+            dto.setNationalities(record.get("nationalities"));
+            dto.setDateOfBirth(record.get("dateOfBirth"));
+            dto.setPositions(record.get("positions"));
+            dto.setHeightCm(record.get("heightCm"));
+        } catch (IllegalArgumentException e) {
+            logger.error("Missing required column in CSV: {}", e.getMessage());
+            throw new RuntimeException("CSV format error: " + e.getMessage());
+        }
         return dto;
     }
 

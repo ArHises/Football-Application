@@ -48,11 +48,18 @@ public class PlayerService {
                 .toList();
         LocalDate today = LocalDate.now();
         return players.stream()
-                .filter(p -> name == null || (p.getFirstName() + " " + p.getLastName()).toLowerCase().contains(name.toLowerCase()))
-                .filter(p -> nationalities == null || p.getNationalities().stream().anyMatch(nationalities::contains))
-                .filter(p -> minAge == null || (p.getDateOfBirth() != null && today.minusYears(minAge).isAfter(p.getDateOfBirth())))
-                .filter(p -> maxAge == null || (p.getDateOfBirth() != null && today.minusYears(maxAge).isBefore(p.getDateOfBirth())))
-                .filter(p -> positions == null || p.getPositions().stream().anyMatch(positions::contains))
+                .filter(p -> name == null || name.trim().isEmpty() || 
+                    (p.getFirstName().toLowerCase().contains(name.toLowerCase()) || 
+                     p.getLastName().toLowerCase().contains(name.toLowerCase()) ||
+                     (p.getFirstName() + " " + p.getLastName()).toLowerCase().contains(name.toLowerCase())))
+                .filter(p -> nationalities == null || nationalities.isEmpty() || 
+                    p.getNationalities().stream().anyMatch(nat -> nationalities.contains(nat)))
+                .filter(p -> minAge == null || (p.getDateOfBirth() != null && 
+                    p.getDateOfBirth().isBefore(today.minusYears(minAge))))
+                .filter(p -> maxAge == null || (p.getDateOfBirth() != null && 
+                    p.getDateOfBirth().isAfter(today.minusYears(maxAge))))
+                .filter(p -> positions == null || positions.isEmpty() || 
+                    p.getPositions().stream().anyMatch(pos -> positions.contains(pos)))
                 .filter(p -> minHeight == null || (p.getHeightCm() != null && p.getHeightCm() >= minHeight))
                 .filter(p -> maxHeight == null || (p.getHeightCm() != null && p.getHeightCm() <= maxHeight))
                 .toList();

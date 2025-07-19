@@ -161,12 +161,12 @@ const UploadCsv = ({ onUploadComplete, onClose }) => {
     };
 
     const downloadSample = () => {
-        const csvContent = `firstName,lastName,dateOfBirth,heightCm,nationalities,positions
-John,Doe,1995-03-15,180,"American","Forward,Midfielder"
-Jane,Smith,1992-07-22,175,"Canadian","Defender"
-Mike,Johnson,1998-01-10,185,"British,Irish","Goalkeeper"
-Sarah,Williams,1996-11-08,168,"Spanish,French","Midfielder"
-David,Brown,1993-05-12,182,"German","Forward"`;
+        const csvContent = `firstName,lastName,nationalities,dateOfBirth,positions,heightCm
+Lionel,Messi,Argentina,1987-06-24,RW;CF,169
+Cristiano,Ronaldo,Portugal,1985-02-05,LW;ST,187
+Kylian,Mbappe,France,1998-12-20,ST;LW,178
+Neymar,Jr,Brazil,1992-02-05,LW;CAM,175
+Kevin,De Bruyne,Belgium,1991-06-28,CAM;CM,181`;
 
         const blob = new Blob([csvContent], { type: "text/csv" });
         const url = window.URL.createObjectURL(blob);

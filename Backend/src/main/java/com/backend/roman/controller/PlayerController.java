@@ -9,9 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @AllArgsConstructor
 @RestController
@@ -81,13 +79,21 @@ public class PlayerController {
     public ResponseEntity<?> uploadCSV(@RequestParam("file") MultipartFile file) {
         try {
             List<Player> players = csvService.parseAndSave(file);
-            List<PlayerDto> playerDtos = players.stream()
-                .map(com.backend.roman.mapper.PlayerMapper::toDto)
-                .toList();
-            System.out.println("CSV file uploaded!");
-            return ResponseEntity.ok(playerDtos);
+            
+            // Create response in the format expected by frontend
+            Map<String, Object> response = new HashMap<>();
+            response.put("successful", players.size());
+            response.put("total", players.size());
+            response.put("errors", new ArrayList<>());
+            
+            System.out.println("CSV file uploaded! Players added: " + players.size());
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("successful", 0);
+            errorResponse.put("total", 0);
+            errorResponse.put("errors", List.of(Map.of("message", e.getMessage())));
+            return ResponseEntity.badRequest().body(errorResponse);
         }
     }
 
